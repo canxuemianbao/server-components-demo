@@ -7,16 +7,34 @@
  */
 
 import {useState, Suspense} from 'react';
+import {motion} from 'framer-motion';
 import {ErrorBoundary} from 'react-error-boundary';
 
 import {useServerResponse} from './Cache.client';
 import {LocationContext} from './LocationContext.client';
+
+export const MyComponent = () => (
+  <motion.div
+    style={{
+      backgroundColor: 'red',
+      width: '100px',
+      height: '100px',
+      margin: 'auto',
+    }}
+    animate={{
+      scale: [1, 2, 2, 1, 1],
+      rotate: [0, 0, 270, 270, 0],
+      borderRadius: ['20%', '20%', '50%', '50%', '20%'],
+    }}
+  />
+);
 
 export default function Root({initialCache}) {
   return (
     <Suspense fallback={null}>
       <ErrorBoundary FallbackComponent={Error}>
         <Content />
+        {/* <MyComponent /> */}
       </ErrorBoundary>
     </Suspense>
   );

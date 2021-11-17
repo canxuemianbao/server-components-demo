@@ -32,6 +32,16 @@ webpack(
           use: 'babel-loader',
           exclude: /node_modules/,
         },
+        {
+          type: 'javascript/auto',
+          test: /\.mjs$/,
+          include: /node_modules/,
+        },
+        {
+          test: /\.css$/i,
+          exclude: /node_modules/,
+          use: ['style-loader', 'css-loader', 'postcss-loader'],
+        },
       ],
     },
     plugins: [

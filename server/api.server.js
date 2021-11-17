@@ -9,6 +9,8 @@
 'use strict';
 
 const register = require('react-server-dom-webpack/node-register');
+const tracking = require('./tracking');
+
 register();
 const babelRegister = require('@babel/register');
 
@@ -53,6 +55,10 @@ function handleErrors(fn) {
     }
   };
 }
+
+app.get('/tracking', async (_req, res) => {
+  res.json(await tracking());
+});
 
 app.get(
   '/',
